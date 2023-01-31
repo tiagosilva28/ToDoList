@@ -8,6 +8,7 @@ public class Main {
        todoItem.createStreams();
        //todoItem.addTask();
        //todoItem.removeTask();
+        //teste
 
         System.out.println(toDoList.tasksList.get(0).taskDescription);
     }
