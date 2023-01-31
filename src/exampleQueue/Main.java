@@ -13,18 +13,18 @@ public class Main {
         persons.add(new Person(50, "N"));
 
 
-        /*Iterator<Person> iterator= persons.iterator();
+        Iterator<Person> iterator= persons.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
-        }*/
+        }
 
 
         // quantas pessoas quer criar? N
 
-        for (int i = 0; i < 5; i++) {
+       /* for (int i = 0; i < 5; i++) {
             // qual é o nome dele? qual é a idade? X Z
             persons.add(new Person(50, "N"));
-        }
+        }*/
 
         System.out.println(persons.poll());
         System.out.println(persons.poll());

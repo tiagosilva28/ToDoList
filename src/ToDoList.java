@@ -1,26 +1,72 @@
-import java.awt.*;
-import java.io.*;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class ToDoList {
     String name;
     Queue<TodoItem> priorityQueue;
-    ArrayList<TodoItem> tasksList;
+    Iterator<TodoItem> iterator = priorityQueue.iterator();
     private BufferedReader consoleReader;
 
 
     public ToDoList(String name) {
         this.name = name;
-        this.priorityQueue = new PriorityQueue<>();
-        this.tasksList = new ArrayList<TodoItem>();
+        this.priorityQueue = new PriorityQueue<TodoItem>();
     }
 
+    protected void addTask(TodoItem task) {
+        priorityQueue.add(task);
 
+    }
 
+    void removeTask(TodoItem task) {
+        priorityQueue.remove(task);
 
-    public class TodoItem{
+    }
+
+    TodoItem getNextTask() {
+        return priorityQueue.peek();
+
+    }
+
+    void getAllTasks() {
+        Iterator<TodoItem> iterator = priorityQueue.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+    }
+
+    void getIncompleteTasks() {
+        while (iterator.hasNext()) {
+            TodoItem todoItem = iterator.next();
+            if (!todoItem.isComplete) {
+                System.out.println(todoItem);
+            }
+        }
+    }
+
+    void getCompleteTasks() {
+        while (iterator.hasNext()) {
+            TodoItem todoItem = iterator.next();
+            if (todoItem.isComplete) {
+                System.out.println(todoItem);
+            }
+        }
+
+    }
+
+    void markTaskComplete(TodoItem task) {
+        task.isComplete = true;
+
+    }
+
+    void markTaskIncomplete(TodoItem task) {
+        task.isComplete = false;
+    }
+
+    protected class TodoItem implements Comparable<TodoItem> {
         String taskName;
         String taskDescription;
         boolean isComplete;
@@ -36,49 +82,19 @@ public class ToDoList {
             this.priorityLevel = priorityLevel;
         }
 
-        public void createStreams() throws IOException {
-            consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        @Override
+        public String toString() {
+            return "TodoItem{" +
+                    "taskName='" + taskName + '\'' +
+                    ", taskDescription='" + taskDescription + '\'' +
+                    ", isComplete=" + isComplete +
+                    ", priorityLevel=" + priorityLevel +
+                    '}' + '\n';
         }
 
-        public String userAskInput(String message) throws IOException {
-
-            System.out.println(message);
-            return consoleReader.readLine();
+        @Override
+        public int compareTo(TodoItem o) {
+            return this.priorityLevel - o.priorityLevel;
         }
-
-        void addTask(TodoItem task) throws IOException {
-            task.taskName = userAskInput(Messages.TASK_NAME);
-            task.taskDescription = userAskInput(Messages.TASK_DESCRIPTION);
-            task.priorityLevel = Integer.parseInt(userAskInput(Messages.TASK_PRIORITY_LEVEL));
-            tasksList.add(new TodoItem(task.taskName,task.taskDescription,task.priorityLevel));
-        }
-        void removeTask(TodoItem task){
-            tasksList.remove(task);
-
-
-        }
-        void getNextTask() {
-            //aaaaaa
-
-        }
-        void getAllTasks(){
-
-        }
-        void getIncompleteTasks(){
-
-        }
-        void getCompleteTasks(){
-
-        }
-        void markTaskComplete(TodoItem task){
-
-        }
-        void markTaskIncomplete(TodoItem task){
-
-        }
-
-
-
-
     }
 }
