@@ -6,7 +6,7 @@ import java.util.Queue;
 
 public class ToDoList {
     String name;
-    Queue<Integer> priorityQueue = new PriorityQueue<>();
+    Queue<TodoItem> priorityQueue;
     ArrayList<TodoItem> tasksList;
     private BufferedReader consoleReader;
 

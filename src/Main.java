@@ -1,3 +1,5 @@
+import exampleQueue.Person;
+
 import java.io.IOException;
 
 public class Main {
@@ -6,10 +8,7 @@ public class Main {
        ToDoList.TodoItem todoItem = toDoList.new TodoItem();
 
        todoItem.createStreams();
-       //todoItem.addTask();
-       //todoItem.removeTask();
-        //teste
-
+       
         System.out.println(toDoList.tasksList.get(0).taskDescription);
     }
 }
