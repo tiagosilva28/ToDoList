@@ -7,14 +7,14 @@ import java.util.Queue;
 public class ToDoList {
     String name;
     Queue<Integer> priorityQueue = new PriorityQueue<>();
-    ArrayList<TodoItem> tasks;
+    ArrayList<TodoItem> tasksList;
     private BufferedReader consoleReader;
 
 
-    public ToDoList() {
-        this.name = "Lista 1";
+    public ToDoList(String name) {
+        this.name = name;
         this.priorityQueue = new PriorityQueue<>();
-        this.tasks = new ArrayList<TodoItem>();
+        this.tasksList = new ArrayList<TodoItem>();
     }
 
 
@@ -46,13 +46,15 @@ public class ToDoList {
             return consoleReader.readLine();
         }
 
-        void addTask() throws IOException {
-            this.taskName = userAskInput(Messages.TASK_NAME);
-            this.taskDescription = userAskInput(Messages.TASK_DESCRIPTION);
-            this.priorityLevel = Integer.parseInt(userAskInput(Messages.TASK_PRIORITY_LEVEL));
-            tasks.add(new TodoItem(this.taskName,this.taskDescription,this.priorityLevel));
+        void addTask(TodoItem task) throws IOException {
+            task.taskName = userAskInput(Messages.TASK_NAME);
+            task.taskDescription = userAskInput(Messages.TASK_DESCRIPTION);
+            task.priorityLevel = Integer.parseInt(userAskInput(Messages.TASK_PRIORITY_LEVEL));
+            tasksList.add(new TodoItem(task.taskName,task.taskDescription,task.priorityLevel));
         }
         void removeTask(TodoItem task){
+            tasksList.remove(task);
+
 
         }
         void getNextTask() {
